@@ -7,11 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET users page. */
-router.get('/users.html', function(req, res) {
-  res.render('users', { title: 'Express' });
-});
-
-/* GET users page. */
 router.get('/brand.html', function(req, res) {
   res.render('brand', { title: 'Express' });
 });
