@@ -31,6 +31,7 @@
               <th>年龄</th>
               <th>性别</th>
               <th>是否为管理员</th>
+              <th>操作</th>
             </tr>
           </thead>
           <tbody>
@@ -42,6 +43,12 @@
                 <td><%= list[i].age %></td>
                 <td><%= list[i].sex %></td>
                 <td><%= list[i].isAdmin %></td>
+                <td>
+                  <% if(!list[i].isAdmin) {%>
+                    <a href="/users/delete?id=<%=list[i]._id%>">删除</a>
+                  <% }%>
+                </td>
+                
               </tr>
               <% }%>
           </tbody>
@@ -49,17 +56,17 @@
         <nav>
           <ul class="pagination">
             <li>
-              <a href="#" aria-label="Previous">
+              <a href="/users/?page=<%= currentPage-1<1?1:currentPage-1%>&pageSize=<%= pageSize%>">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
+            <% for(var j=0;j<totalPage;j++){%>
+            <li class="<%= currentPage == (j+1)?'active':''%>">
+              <a href="/users/?page=<%= j+1%>&pageSize=<%= pageSize%>"><%= j+1 %></a>
+            </li>
+            <% } %>
             <li>
-              <a href="#" aria-label="Next">
+              <a href="/users/?page=<%= currentPage+1<totalPage?currentPage+1:totalPage%>&pageSize=<%= pageSize%>">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
